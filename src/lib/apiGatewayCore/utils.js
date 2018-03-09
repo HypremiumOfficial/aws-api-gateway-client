@@ -14,6 +14,8 @@
  */
 /* eslint max-len: ["error", 100]*/
 
+var Buffer = require('buffer/').Buffer; // note: the trailing slash is important!
+
 const utils = {
   assertDefined: function(object, name) {
     if (object === undefined) {
@@ -39,7 +41,7 @@ const utils = {
     if (params === undefined) {
       return {};
     }
-    let object = { };
+    let object = {};
     for (let i = 0; i < keys.length; i++) {
       object[keys[i]] = params[keys[i]];
     }
@@ -74,12 +76,14 @@ const utils = {
     for (attr in baseObj) {
       if (baseObj.hasOwnProperty(attr)) merged[attr] = baseObj[attr];
     }
-    if (null == additionalProps || 'object' != typeof additionalProps) return baseObj;
+    if (null == additionalProps || 'object' != typeof additionalProps)
+      return baseObj;
     for (attr in additionalProps) {
-      if (additionalProps.hasOwnProperty(attr)) merged[attr] = additionalProps[attr];
+      if (additionalProps.hasOwnProperty(attr))
+        merged[attr] = additionalProps[attr];
     }
     return merged;
-  }
+  },
 };
 
 export default utils;
